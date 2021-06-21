@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="HOME" value="F:/Bank Demo Project Spring Boot/Logs" />
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- <filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO, DEBUG, ERROR, WARN</level>
+			<onMatch>DENY</onMatch>
+		</filter> -->
+		<encoder>
+			<pattern>%d{yyyy-MM-dd/HH:mm:ss.SSS} [%thread] %-5level %logger{20}: %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- file appender -->
+	<appender name="INFO_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<file>${HOME}/info.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd/HH:mm:ss.SSS} [%thread] %-5level %logger{20}: %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 1 MegaBytes -->
+            <fileNamePattern>${HOME}/archived-%d{yyyy-MM-dd}/info.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+	</appender>
+
+	<appender name="DEBUG_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<file>${HOME}/debug.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd/HH:mm:ss.SSS} [%thread] %-5level %logger{20}: %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 1 MegaBytes -->
+            <fileNamePattern>${HOME}/archived-%d{yyyy-MM-dd}/debug.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+	</appender>
+
+	<appender name="ERROR_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<file>${HOME}/error.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd/HH:mm:ss.SSS} [%thread] %-5level %logger{20}: %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 1 MegaBytes -->
+            <fileNamePattern>${HOME}/archived-%d{yyyy-MM-dd}/error.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+	</appender>
+
+	<appender name="WARN_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<file>${HOME}/warn.log</file>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd/HH:mm:ss.SSS} [%thread] %-5level %logger{20}:
+				%msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 1 MegaBytes -->
+            <fileNamePattern>${HOME}/archived-%d{yyyy-MM-dd}/warn.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+	</appender>
+
+	<logger name="com.bank.app">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO_FILE" />
+		<appender-ref ref="DEBUG_FILE" />
+		<appender-ref ref="ERROR_FILE" />
+		<appender-ref ref="WARN_FILE" />
+	</logger>
+</configuration>
