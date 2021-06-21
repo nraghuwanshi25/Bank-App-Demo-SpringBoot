@@ -54,7 +54,7 @@ public class TestController {
 		engageResponse.setData("hello");
 		engageResponse.setMessage("hello");
 		// testService.name();
-		System.out.println("sysout aa");
+		logger.info("helloMes response");
 		logger.info("helloMes response");
 		return new ResponseEntity<EngageResponse>(engageResponse, HttpStatus.OK);
 
